@@ -1,0 +1,26 @@
+Compte rendu codage voix et image
+
+
+Pour permettre une meilleur décompression, nous avons choisi de diminuer le pas
+de quantification quand la fréquence augmente (canaux supérieur). 
+
+De plus nous diminuons
+le pas quand la valeur d'entrée val est faible. Pour cela nous avons crée une fonction calculant
+la valeur du pas qui est :
+- décroissante par rapport a la valeur du numéro de canal (compris entre 0 et 32)
+- croissante par rapport a la valeur d'entrée val compris entre 0 et 1
+
+Cette fonction est construite grace a un tableau de int l18-22 remplis de manière décroissante suivant
+une fonction logarithmique. Ce tableau permet de rendre la fonction du pas décroissante par rapport
+aux numéros de canaux (chaque entrée du tableau correspond a un canal).
+
+Pour rendre la fonction croissante en fonction de la valeur d'entrée val, nous avons pris une fonction logarithmique
+(l32). (ex: pour val = 0, le pas vaut 0.)
+
+Résultats :
+Nous avons un fichier sb.wav de 3.9Mo. Le fichier sbwavnew.a44 fait 3.9Mo, ce qui est normal que ce programme améliore
+la compressibilité par un algorithme comme 7zip. Le fichier sbwavnew.a44.7z fait 390kO, soit un rapport de 10 environ.
+Il faut compararer ce résulat avec le fichier compressé du wav qui fait 2.6Mo.
+
+
+ 
